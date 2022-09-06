@@ -1,0 +1,7 @@
+namespace: ratingsapp-helm
+
+ratingsapiimage: <ACR Image path>
+
+ratingswebimage: <ACR Image path>
+
+mongodbconnection: "<Mongo DB connection string>"

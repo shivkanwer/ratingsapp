@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aksdemo
+  namespace: ratingsapp
+  labels:
+    app: aksdemo
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: aksdemo
+      labels:
+        app: aksdemo
+    spec:
+      containers:
+        - name: aksdemo
+          image: shivkanwer/testapp:v1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+              name: aksdemo
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: aksdemo
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: aksdemo
+  namespace: ratingsapp
+  labels:
+    app: aksdemo
+spec:
+  ports:
+    - port: 80
+  selector:
+    app: aksdemo
+  type: ClusterIP
